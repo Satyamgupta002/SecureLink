@@ -1,0 +1,15 @@
+import pickle
+from sklearn.ensemble import RandomForestClassifier
+
+# Dummy training data
+X_train = [[0.1, 0.2], [0.4, 0.5]]
+y_train = [0, 1]
+
+model = RandomForestClassifier()
+model.fit(X_train, y_train)
+
+# Save as a correct .pkl file
+with open("phishing_model.pkl", "wb") as file:
+    pickle.dump(model, file)
+
+print("Model saved successfully!")

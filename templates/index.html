@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Phishing Detection System</h1>
+        <form id="urlForm">
+            <input type="text" id="urlInput" placeholder="Enter URL here..." required>
+            <button type="submit">Check</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById("urlForm").addEventListener("submit", async function(event) {
+            event.preventDefault(); // Prevent page reload
+
+            let urlInput = document.getElementById("urlInput");
+            let resultDiv = document.getElementById("result");
+
+            try {
+                let response = await fetch("/predict", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ url: urlInput.value })
+                });
+
+                let data = await response.json();
+
+                if (data.error) {
+                    resultDiv.innerHTML = `<span class="error">${data.error}</span>`;
+                } else {
+                    let resultClass = data.prediction === "Phishing" ? "phishing" : "legitimate";
+                    resultDiv.innerHTML = `<span class="${resultClass}">Result: ${data.prediction}</span>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+            }
+        });
+
+        // ✅ Clear result when the user deletes the URL
+        document.getElementById("urlInput").addEventListener("input", function() {
+            let resultDiv = document.getElementById("result");
+            if (this.value === "") {
+                resultDiv.innerHTML = ""; // Clear result
+            }
+        });
+    </script>
+</body>
+</html>

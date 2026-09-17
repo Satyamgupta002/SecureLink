@@ -1,0 +1,9 @@
+# Ignore system files
+.DS_Store
+.vscode/
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+
