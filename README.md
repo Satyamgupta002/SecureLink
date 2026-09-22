@@ -373,15 +373,7 @@ The trained model does not directly accept a raw URL.
 
 A raw URL first passes through the same feature extraction process used during training.
 
-```mermaid
-flowchart LR
-    A[Raw URL] --> B[extract_features]
-    B --> C[12 URL Features]
-    C --> D[Feature Schema / Correct Order]
-    D --> E[Final Random Forest]
-    E --> F[Legitimate]
-    E --> G[Phishing]
-```
+![Phishing URL Inference Pipeline](mermaid-diagram.png)
 
 ## Feature Order
 
@@ -511,26 +503,6 @@ Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
-
----
-
-# 📦 Requirements
-
-Example `requirements.txt`:
-
-```text
-pandas
-numpy
-scikit-learn
-scipy
-matplotlib
-seaborn
-xgboost
-optuna
-tldextract
-joblib
-```
-
 ---
 
 # ▶️ Training
@@ -538,7 +510,7 @@ joblib
 To train and persist the final model:
 
 ```bash
-python train_model_persist.py
+python train_model.py
 ```
 
 The script:
@@ -551,20 +523,12 @@ The script:
 6. Evaluates it on the held-out test set.
 7. Saves the trained model artifact.
 
-The saved model is:
-
-```text
-phishing_model.pkl
-```
-
----
-
 # 🔎 Inference
 
 To classify a URL:
 
 ```bash
-python inference_model.py
+python predict.py
 ```
 
 The program accepts a URL and extracts the same 12 features used during training.
@@ -638,7 +602,7 @@ This is reflected in the final confusion matrix.
 
 **Satyam Gupta**
 
-B.Tech in Electronics & Communication Engineering<\br>
+B.Tech in Electronics & Communication Engineering <br>
 Maulana Azad National Institute of Technology, Bhopal
 
 
