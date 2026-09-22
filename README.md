@@ -580,25 +580,6 @@ The system then produces a prediction and phishing probability.
 The exact output depends on the trained model and extracted features.
 
 ---
-
-# 🔐 Model Artifact and GitHub
-
-The final Random Forest model is approximately **935 MB**, so the trained `.pkl` file is intentionally **not tracked in Git**.
-
-Add the following to `.gitignore`:
-
-```gitignore
-*.pkl
-__pycache__/
-.ipynb_checkpoints/
-```
-
-The repository therefore contains the training and inference code without committing the large binary model artifact.
-
-The reported evaluation metrics were obtained from the locally persisted final Random Forest model.
-
----
-
 # ⚠️ Limitations
 
 ### 1. URL-only analysis
@@ -635,62 +616,7 @@ The final model still produces both:
 - False negatives: phishing URLs classified as legitimate
 
 This is reflected in the final confusion matrix.
-
-### 4. Model size
-
-The persisted Random Forest is relatively large because it contains 344 trees with a maximum depth of 24.
-
-Consequently, the model artifact is not included in the Git repository.
-
 ---
-
-# 🔮 Future Improvements
-
-Potential future improvements include:
-
-- Adding HTML and webpage-content features
-- Incorporating DNS and WHOIS information
-- Adding domain age and reputation features
-- Using character-level embeddings
-- Comparing with deep learning approaches
-- Evaluating calibration of predicted probabilities
-- Optimizing the inference model size
-- Using model compression or knowledge distillation
-- Adding a REST API for inference
-- Building a web interface for URL classification
-- Evaluating performance on a newer external dataset
-- Monitoring performance for distribution drift
-
----
-
-# 📚 Key ML Concepts Demonstrated
-
-This project demonstrates practical application of:
-
-- Exploratory Data Analysis
-- Feature Engineering
-- Regular Expressions
-- URL Parsing
-- Class Imbalance Handling
-- Stratified Train-Test Splitting
-- Cross-Validation
-- Random Forest
-- XGBoost
-- AdaBoost
-- Decision Trees
-- Hyperparameter Optimization
-- Optuna / TPE
-- Precision
-- Recall
-- F1-score
-- Confusion Matrix
-- Threshold Analysis
-- Feature Importance
-- Model Persistence
-- Inference Pipeline
-
----
-
 # 🎯 Project Highlights
 
 - Analyzed and engineered features from **507K+ labeled URLs**
@@ -712,4 +638,7 @@ This project demonstrates practical application of:
 
 **Satyam Gupta**
 
-Machine Learning / Software Development Projects
+B.Tech in Electronics & Communication Engineering<\br>
+Maulana Azad National Institute of Technology, Bhopal
+
+
